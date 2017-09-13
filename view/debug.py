@@ -1,4 +1,5 @@
 from sanic import Blueprint
+from sanic.response import json
 from view import jinja
 from module.wtform import PosForm,LedForm
 from module.mongo import PosData
