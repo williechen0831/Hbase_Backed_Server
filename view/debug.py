@@ -40,6 +40,7 @@ async def web_led(request):
         CARsixth="CAR1:6th"
         CARmain="CAR1:main"
         CARnums="CAR1:nums"
+
         return json({"success":"GOGOGO"})
     else:
         return jinja.render('index2.html', request)
