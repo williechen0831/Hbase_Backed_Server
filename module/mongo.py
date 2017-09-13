@@ -1,4 +1,5 @@
 from conf.db_conf import client
+import datetime
 db = client['BackendServer']
 
 class PosData:
@@ -10,8 +11,8 @@ class PosData:
                 "car":car,
                 "X":x,
                 "Y":y,
-                "V":vector
-
+                "V":vector,
+                "time":datetime.datetime.utcnow()
                 }
         self.col.insert_one(raw)
         return True
