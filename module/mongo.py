@@ -15,6 +15,7 @@ class PosData:
                 "time":datetime.datetime.utcnow()
                 }
         self.col.insert_one(raw)
+        client.close()
         return True
 
     def getlastcar(self,car):
