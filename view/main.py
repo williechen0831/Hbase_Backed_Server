@@ -1,5 +1,5 @@
 from sanic import Blueprint
-from view import jinja
+from view.base import jinja
 from sanic.response import json
 from module.wtform import PosForm,LedForm
 from module.mongo import PosData
