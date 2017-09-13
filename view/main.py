@@ -3,6 +3,7 @@ from view import jinja
 from sanic.response import json
 from module.wtform import PosForm,LedForm
 from module.mongo import PosData
+from bson.json_util import dumps
 posData = PosData()
 
 main = Blueprint('main')
@@ -23,4 +24,4 @@ async def filesIndex(request):
 async def index(request):
     car1 = posData.getlastcar(1)
     car2 = posData.getlastcar(2)
-    return json({"car1":car1,"car2":car2})
+    return json(dumps(car1))
