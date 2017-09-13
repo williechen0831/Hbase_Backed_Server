@@ -1,9 +1,9 @@
 from conf.db_conf import client
 import datetime
-db = client['BackendServer']
 
 class PosData:
     def __init__(self):
+        db = client['BackendServer']
         self.col = db['posData']
 
     def update(self,car,x,y,vector):
