@@ -21,10 +21,7 @@ class PosData:
         raw = {
                 "car":int(car)
                 }
-        sort = {
-                '_id': -1
-                }
-        return self.col.find(raw).sort(sort).limit(1);
+        return self.col.find(raw).sort('_id',-1).limit(1);
 
 class LedData:
     def __init__(self):
