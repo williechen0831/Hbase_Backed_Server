@@ -1,6 +1,4 @@
-from pymongo import MongoClient
-
-client = MongoClient('mongodb://:@/admin?authMechanism=SCRAM-SHA-1')
+from conf.db_conf import client
 db = client['BackendServer']
 
 class PosData:
