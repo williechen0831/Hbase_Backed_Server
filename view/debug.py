@@ -1,20 +1,19 @@
 from sanic import Blueprint
 from view import jinja
 from module.wtform import PosForm,LedForm
+from module.mongo import PosData
 debug = Blueprint('debug')
+posData = PosData()
 
 @debug.route("/", methods=['GET','POST'])
 async def debugIndex(request):
     form = PosForm(request)
     if request.method == 'POST':
-        time = form.time.data #time
         car = form.car.data #car
-        car_collect_x = car + ":" + "x"
-        car_collect_y = car + ":" + "y"
-        car_collect_vector = car + ":" + "vector"
         x_value = form.x_value.data #car_x軸
         y_value = form.y_value.data #car_y軸
         vector_value = form.vector_value.data #car_vector
+        posData.update(car,x_value,y_value,vector_value)
         return json({"success":"GOGOGO"})
     else:
         return jinja.render('index.html', request)
