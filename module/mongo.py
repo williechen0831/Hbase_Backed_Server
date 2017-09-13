@@ -11,6 +11,7 @@ class PosData:
                 "X":x,
                 "Y":y,
                 "V":vector
+
                 }
         self.col.insert_one(raw)
         return True
