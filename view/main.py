@@ -4,8 +4,8 @@ from sanic.response import json
 from module.wtform import PosForm,LedForm
 from module.mongo import PosData
 from bson.json_util import dumps
-posData = PosData()
 
+posData = PosData()
 main = Blueprint('main')
 
 

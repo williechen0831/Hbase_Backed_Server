@@ -1,6 +1,6 @@
 from sanic import Blueprint
 from sanic.response import json
-from view import jinja
+from view.base import jinja
 from module.wtform import PosForm,LedForm
 from module.mongo import PosData
 debug = Blueprint('debug')
