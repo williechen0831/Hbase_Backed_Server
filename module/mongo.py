@@ -8,7 +8,7 @@ class PosData:
 
     def update(self,car,x,y,vector):
         raw = {
-                "car":car,
+                "car":int(car),
                 "X":x,
                 "Y":y,
                 "V":vector,
@@ -16,6 +16,12 @@ class PosData:
                 }
         self.col.insert_one(raw)
         return True
+
+    def getlastcar(self,car):
+        raw = {
+                "car":int(car)
+                }
+        return self.col.find(raw).sort({$natural:1}).limit(1);
 
 class LedData:
     def __init__(self):

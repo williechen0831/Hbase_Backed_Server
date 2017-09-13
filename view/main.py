@@ -19,3 +19,8 @@ async def filesIndex(request):
         posData.update(car,x_value,y_value,vector_value)
         return json({"success":"GOGOGO"})
 
+@main.route('/')
+async def index(request):
+    car1 = posData.getlastcar(1)
+    car2 = posData.getlastcar(2)
+    return json({"car1":car1,"car2":car2})
