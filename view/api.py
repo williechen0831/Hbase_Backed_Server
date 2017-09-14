@@ -7,5 +7,5 @@ api = Blueprint('api')
 
 @api.route('/car/<car>')
 async def findCar(request,car):
-    print(car)
-    return json({'car':car})
+    dbCar = posData.getlastcar(int(car))
+    return json({'car':dbCar.get('car'),'X':dbCar.get('X'),'Y':dbCar.get('Y'),'V':dbCar.get('V'),'time':dbCar.get('time')})
