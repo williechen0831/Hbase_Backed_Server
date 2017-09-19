@@ -1,7 +1,7 @@
 import datetime
 def gettrangecar(intCar):
     db = client['BackendServer']
-    col = db['posData']
+    col = db['posData-test']
     nowTime = datetime.datetime.now()
     deltaTime = datetime.timedelta(seconds=3)
     calcTime = nowTime - deltaTime

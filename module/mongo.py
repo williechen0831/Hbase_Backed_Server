@@ -4,7 +4,7 @@ import datetime
 class PosData:
     def __init__(self):
         db = client['BackendServer']
-        self.col = db['posData-test']
+        self.col = db['posData']
 
     def update(self,car,x,y,vector):
         raw = {
