@@ -30,7 +30,7 @@ class PosData:
         cars = {}
         for car in range(0,7):
             carNeed = self.col.find({car : car , time : {"gte":seclater,"lte":datetimeNow }}).sort('_id',-1).limit(1)
-            if carNeed.count == 0 :
+            if carNeed.count() == 0 :
                 cars[car] = None
             else:
                 cars[car] = [carNeed[0].get('X'),carNeed[0].get('Y'),carNeed[0].get('X')]
