@@ -9,7 +9,7 @@ def zipdir(path, ziph):
     # ziph is zipfile handle
     for root, dirs, files in os.walk(path):
         for file in files:
-            ziph.write(os.path.join(root, file))
+            ziph.write(os.path.join(file))
 
 zipf = zipfile.ZipFile('module.zip', 'w', zipfile.ZIP_DEFLATED)
 zipdir('module', zipf)
