@@ -44,12 +44,6 @@ def block(angle,d):
         else:
             return 6
 
-def getrecentcar_comparedata(carObj):
-    if carObj.count() == 0 :
-        return None
-    else:
-        return [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
-
 def getrecentcar_parallel(time):
     carsObj = client.gather(client.map(shared.gettrangecar,range(7)))
     return carsObj
