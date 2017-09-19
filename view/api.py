@@ -14,6 +14,6 @@ async def findCar(request,car):
     return json({'car':dbCar.get('car'),'X':dbCar.get('X'),'Y':dbCar.get('Y'),'V':dbCar.get('V'),'time':dbCar.get('time')})
 
 @api.route('/cars/<time>')
-async def findCar(request,car):
+async def findCar(request,time):
     dbCars = posData.getsixcar(time)
     return text(dbCars)
