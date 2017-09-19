@@ -3,6 +3,20 @@ from view.debug import debug
 from view.main import main
 from view.api import api
 from conf.dask_conf import client
+import zipfile
+import os
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+
+zipf = zipfile.ZipFile('module.zip', 'w', zipfile.ZIP_DEFLATED)
+zipdir('module', zipf)
+zipf.close()
+zipf = zipfile.ZipFile('conf.zip', 'w', zipfile.ZIP_DEFLATED)
+zipdir('conf', zipf)
+zipf.close()
 app.blueprint(debug, url_prefix='/debug')
 app.blueprint(api, url_prefix='/api')
 app.blueprint(main)
