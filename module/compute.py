@@ -55,5 +55,5 @@ def getrecentcar_parallel(time):
     nowTime = datetime.datetime.now()
     deltaTime = datetime.timedelta(seconds=int(time))
     calcTime = nowTime - deltaTime
-    carsObj = client.gather(client.map(posData.gettrangecar,range(0,7),nowTime,calcTime))
+    carsObj = client.gather(client.map(posData.gettrangecar,range(7),nowTime,calcTime))
     return carsObj
