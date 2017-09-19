@@ -23,6 +23,7 @@ class PosData:
                 "car":int(car)
                 }
         return self.col.find(raw).sort('_id',-1)
+
     def gettrangecar(intCar,intSec):
         db = client['BackendServer']
         col = db['posData']
