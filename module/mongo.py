@@ -24,29 +24,18 @@ class PosData:
                 }
         return self.col.find(raw).sort('_id',-1)
 
-    def gettrangecar(self,intCar,intTime):
+    def gettrangecar(self,intCar,calcTime,nowTime):
         raw = {
-                "car":int(car),
+                "car":int(intCar),
                 "time":
                 {
                     "$gte":calcTime,"$lte":nowTime
                 }
             }
-        return self.col.find(raw).sort('_id',-1)
+        return self.col.find(raw).sort('_id',-1)[0]
 
 
     def getsixcar(self,time):
-        nowTime = datetime.datetime.now()
-        deltaTime = datetime.timedelta(seconds=int(time))
-        calcTime = nowTime - deltaTime
-        dictCars = {}
-        for car in range(0,7):
-            carObj = self.col.find({"car" : car , "time" : { "$gte":calcTime,"$lte":nowTime }}).sort('_id',-1)
-            if carObj.count() == 0 :
-                dictCars[car] = None
-            else:
-                dictCars[car] = [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
-        return dictCars
 
 
 class LedData:

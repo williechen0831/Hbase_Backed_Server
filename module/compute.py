@@ -1,6 +1,7 @@
 import math
 import geopy.distance
-
+from conf.dask_conf import client
+from module.mongo import gettrangecar
 # src :https://gist.github.com/jeromer/2005586
 def compass(pointA, pointB):
     lat1 = math.radians(pointA[0])
@@ -41,8 +42,16 @@ def block(angle,d):
             return 5
         else:
             return 6
- 
-def resultans():
-    from module.mongo import PosData
 
+def getrecentcar_comparedata(carObj):
+    if carObj.count() == 0 :
+        return None
+    else:
+        return [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
 
+def getrecentcar_parallel():
+    nowTime = datetime.datetime.now()
+    deltaTime = datetime.timedelta(seconds=int(time))
+    calcTime = nowTime - deltaTime
+    carsObj = client.gather(client.map(gettrangecar,range(0,7),nowTime,calcTime))
+    return carsObj
