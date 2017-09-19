@@ -15,6 +15,6 @@ async def findCar(request,car):
     return json({'car':dbCar.get('car'),'X':dbCar.get('X'),'Y':dbCar.get('Y'),'V':dbCar.get('V'),'time':dbCar.get('time')})
 
 @api.route('/cars')
-async def findCar(request,time):
+async def findCar(request):
     Car = block_check(getrecentcar_parallel())
     return text(Car)
