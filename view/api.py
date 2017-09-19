@@ -1,6 +1,7 @@
 from sanic import Blueprint
 from sanic.response import json,text
 from module.mongo import PosData
+from module.compute import getrecentcar_parallel 
 
 posData = PosData()
 api = Blueprint('api')
@@ -15,5 +16,5 @@ async def findCar(request,car):
 
 @api.route('/cars/<time>')
 async def findCar(request,time):
-    dbCars = posData.getsixcar(time)
-    return text(dbCars)
+    Car = getrecentcar_parallel(time)
+    return text(Car)

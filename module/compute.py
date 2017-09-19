@@ -49,7 +49,7 @@ def getrecentcar_comparedata(carObj):
     else:
         return [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
 
-def getrecentcar_parallel():
+def getrecentcar_parallel(time):
     nowTime = datetime.datetime.now()
     deltaTime = datetime.timedelta(seconds=int(time))
     calcTime = nowTime - deltaTime
