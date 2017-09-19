@@ -1,7 +1,7 @@
 from sanic import Blueprint
 from sanic.response import json,text
 from module.mongo import PosData
-from module.compute import getrecentcar_parallel 
+from module.compute import block_check,getrecentcar_parallel 
 
 posData = PosData()
 api = Blueprint('api')
@@ -14,7 +14,7 @@ async def findCar(request,car):
         return json({'message':'dont have this car'})
     return json({'car':dbCar.get('car'),'X':dbCar.get('X'),'Y':dbCar.get('Y'),'V':dbCar.get('V'),'time':dbCar.get('time')})
 
-@api.route('/cars/<time>')
+@api.route('/cars')
 async def findCar(request,time):
-    Car = getrecentcar_parallel(time)
+    Car = block_check(getrecentcar_parallel())
     return text(Car)

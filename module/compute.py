@@ -44,6 +44,12 @@ def block(angle,d):
         else:
             return 6
 
-def getrecentcar_parallel(time):
+def block_check(rawList):
+    listcompass = []
+    for x in range(1,6):
+        listcompass.append(compass((rawList[0].get('X'),(rawList[0].get('Y'))),(rawList[x].get('X'),(rawList[x].get('Y')))))
+        return listcompass
+
+def getrecentcar_parallel():
     carsObj = client.gather(client.map(shared.gettrangecar,range(7)))
     return carsObj
