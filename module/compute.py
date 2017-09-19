@@ -9,7 +9,6 @@ def compass(pointA, pointB):
     x = math.sin(diffLong) * math.cos(lat2)
     y = math.cos(lat1) * math.sin(lat2) - (math.sin(lat1)
             * math.cos(lat2) * math.cos(diffLong))
-         
     initial_bearing = math.atan2(x, y)
     initial_bearing = math.degrees(initial_bearing)
     compass_bearing = (initial_bearing + 360) % 360
