@@ -23,6 +23,19 @@ class PosData:
                 "car":int(car)
                 }
         return self.col.find(raw).sort('_id',-1).limit(1);
+    def getsixcar(self,time):
+        datetimeNow = datetime.datetime.utcnow
+        delta = datetime.timedelta(second=int(time))
+        seclater = datetimeNow - delta
+        cars = {}
+        for car in range(0,7):
+            carNeed = self.col.find({car : car , time : {"gte":seclater,"lte":datetimeNow }}).sort('_id',-1).limit(1)
+            if carNeed.count == 0 :
+                cars[car] = None
+            else:
+                cars[car] = [carNeed[0].get('X'),carNeed[0].get('Y'),carNeed[0].get('X')]
+        return cars
+
 
 class LedData:
     def __init__(self):
