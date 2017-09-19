@@ -1,5 +1,5 @@
 import datetime
-def gettrangecar(intCar):    
+def gettrangecar(intCar):
     db = client['BackendServer']
     col = db['posData']
     nowTime = datetime.datetime.now()
