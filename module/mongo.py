@@ -24,7 +24,7 @@ class PosData:
                 }
         return self.col.find(raw).sort('_id',-1).limit(1);
     def getsixcar(self,time):
-        datetimeNow = datetime.datetime.utcnow
+        datetimeNow = datetime.datetime.utcnow()
         delta = datetime.timedelta(seconds=int(time))
         seclater = datetimeNow - delta
         cars = {}
