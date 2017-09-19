@@ -2,8 +2,7 @@ import math
 import geopy.distance
 import datetime
 from conf.dask_conf import client
-from module.mongo import PosData
-posData = PosData
+import shared
 # src :https://gist.github.com/jeromer/2005586
 def compass(pointA, pointB):
     lat1 = math.radians(pointA[0])
@@ -52,5 +51,5 @@ def getrecentcar_comparedata(carObj):
         return [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
 
 def getrecentcar_parallel(time):
-    carsObj = client.map(posData.gettrangecar,range(7),time)
+    carsObj = client.map(shared.gettrangecar,range(7),time)
     return carsObj
