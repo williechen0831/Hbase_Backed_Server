@@ -51,5 +51,5 @@ def getrecentcar_comparedata(carObj):
         return [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
 
 def getrecentcar_parallel(time):
-    carsObj = client.map(gettrangecar,range(7))
+    carsObj = client.map(gettrangecar,range(7),time)
     return carsObj
