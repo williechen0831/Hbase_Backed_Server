@@ -29,10 +29,10 @@ class PosData:
         seclater = datetimeNow - delta
         cars = {}
         for car in range(0,7):
-            carNeed = self.col.find({car : car , time : {"$gte":seclater,"$lte":datetimeNow }}).sort('_id',-1).limit(1)
-            try:
+            carNeed = self.col.find({"car" : car , "time" : {"$gte":seclater,"$lte":datetimeNow }}).sort('_id',-1).limit(1)
+            if carNeed.count() == 1 :
                 cars[car] = [carNeed[0].get('X'),carNeed[0].get('Y'),carNeed[0].get('X')]
-            except:
+            else:
                 cars[car] = None
         return cars
 
