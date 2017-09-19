@@ -1,9 +1,9 @@
 import datetime
-def gettrangecar(intCar,intSec):    
+def gettrangecar(intCar):    
     db = client['BackendServer']
     col = db['posData']
     nowTime = datetime.datetime.now()
-    deltaTime = datetime.timedelta(seconds=int(intSec))
+    deltaTime = datetime.timedelta(seconds=3)
     calcTime = nowTime - deltaTime
     raw = {
             "car":int(intCar),
