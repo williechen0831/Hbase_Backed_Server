@@ -12,5 +12,10 @@ def gettrangecar(intCar):
                 "$gte":calcTime,"$lte":nowTime
                 }
             }
-    return col.find(raw).sort('_id',-1)[0]
+    returnValue = []
+    if col.find(raw).sort('_id',-1).count() == 0:
+        returnValue = None
+    else:
+        returnValue = col.find(raw).sort('_id',-1)[0]
+    return returnValue
 
