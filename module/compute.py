@@ -47,7 +47,7 @@ def block(angle,d):
 def block_check(rawList):
     listcompass = []
     for x in range(1,6):
-        listcompass.append(compass((rawList[0].get('X'),(rawList[0].get('Y'))),(rawList[x].get('X'),(rawList[x].get('Y')))))
+        listcompass.append(compass((float(rawList[0].get('X')),float(rawList[0].get('Y'))),(float(rawList[x].get('X')),float(rawList[x].get('Y')))))
         return listcompass
 
 def getrecentcar_parallel():
