@@ -22,20 +22,19 @@ class PosData:
         raw = {
                 "car":int(car)
                 }
-        return self.col.find(raw).sort('_id',-1).limit(1);
+        return self.col.find(raw).sort('_id',-1)
 
     def getsixcar(self,time):
-        datetimeNow = datetime.datetime.now()
-        delta = datetime.timedelta(seconds=int(time))
-        seclater = datetimeNow - delta
-        cars = {}
+        nowTime = datetime.datetime.now()
+        deltaTime = datetime.timedelta(seconds=int(time))
+        calcTime = nowTime - deltaTime
+        dictCars = {}
         for car in range(0,7):
-            carNeed = self.col.find({"car" : car , "time" : {"$gte":seclater,"$lte":datetimeNow }}).sort('_id',-1).limit(1)
-            if carNeed.count() == 0 :
-                cars[car] = None
+            carObj = self.col.find({"car" : car , "time" : { "$gte":calcTime,"$lte":nowTime }}).sort('_id',-1)
+            if carObj.count() == 0 :
+                dictCars[car] = None
             else:
-                print(carNeed.count())
-                cars[car] = [carNeed[0].get('X'),carNeed[0].get('Y'),carNeed[0].get('X')]
+                dictCars[car] = [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
         return cars
 
 
