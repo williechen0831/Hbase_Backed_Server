@@ -35,9 +35,6 @@ class PosData:
         return self.col.find(raw).sort('_id',-1)[0]
 
 
-    def getsixcar(self,time):
-
-
 class LedData:
     def __init__(self):
         self.col = db['ledData']
