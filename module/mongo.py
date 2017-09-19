@@ -34,6 +34,7 @@ class PosData:
             if carNeed.count() == 0 :
                 cars[car] = None
             else:
+                print(carNeed.count())
                 cars[car] = [carNeed[0].get('X'),carNeed[0].get('Y'),carNeed[0].get('X')]
         return cars
 
