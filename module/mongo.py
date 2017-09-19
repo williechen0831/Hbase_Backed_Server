@@ -24,6 +24,17 @@ class PosData:
                 }
         return self.col.find(raw).sort('_id',-1)
 
+    def gettrangecar(self,intCar,intTime):
+        raw = {
+                "car":int(car),
+                "time":
+                {
+                    "$gte":calcTime,"$lte":nowTime
+                }
+            }
+        return self.col.find(raw).sort('_id',-1)
+
+
     def getsixcar(self,time):
         nowTime = datetime.datetime.now()
         deltaTime = datetime.timedelta(seconds=int(time))
