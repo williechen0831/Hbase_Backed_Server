@@ -24,10 +24,14 @@ class PosData:
                 }
         return self.col.find(raw).sort('_id',-1)
 
-    def gettrangecar(self,intCar,intSec):
-        nowTime = datetime.datetime.now()
-        deltaTime = datetime.timedelta(seconds=int(intSec))
-        calcTime = nowTime - deltaTime
+def gettrangecar(intCar):
+    return intCar
+        #db = client['BackendServer']
+        #col = db['posData']
+        #nowTime = datetime.datetime.now()
+        #deltaTime = datetime.timedelta(seconds=int(intSec))
+        #calcTime = nowTime - deltaTime
+"""
         raw = {
                 "car":int(intCar),
                 "time":
@@ -35,7 +39,7 @@ class PosData:
                     "$gte":calcTime,"$lte":nowTime
                 }
             }
-        return self.col.find(raw).sort('_id',-1)[0]
+"""
 
 
 class LedData:
