@@ -35,7 +35,7 @@ class PosData:
                 dictCars[car] = None
             else:
                 dictCars[car] = [carObj[0].get('X'),carObj[0].get('Y'),carObj[0].get('X')]
-        return cars
+        return dictCars
 
 
 class LedData:
