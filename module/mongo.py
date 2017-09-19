@@ -12,7 +12,7 @@ class PosData:
                 "X":x,
                 "Y":y,
                 "V":vector,
-                "time":datetime.datetime.utcnow()
+                "time":datetime.datetime.now()
                 }
         self.col.insert_one(raw)
         client.close()
@@ -24,7 +24,7 @@ class PosData:
                 }
         return self.col.find(raw).sort('_id',-1).limit(1);
     def getsixcar(self,time):
-        datetimeNow = datetime.datetime.utcnow()
+        datetimeNow = datetime.datetime.now()
         delta = datetime.timedelta(seconds=int(time))
         seclater = datetimeNow - delta
         cars = {}
