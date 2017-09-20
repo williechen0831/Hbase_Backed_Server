@@ -1,6 +1,3 @@
-import math
-import geopy.distance
-import datetime
 from conf.dask_conf import client
 import shared
 
@@ -13,7 +10,7 @@ def block_check(rawList):
     listCompass = client.gather(client.map(shared.compass,six_raw_list,six_other_list))
     listDis = client.gather(client.map(shared.distance,six_raw_list,six_other_list))
     listBlock = client.gather(client.map(shared.block,listCompass,listDis))
-    return listBlock
+    return [listBlock,listDis,rawList[0].get('V')]
 
 
 def getrecentcar_parallel():
