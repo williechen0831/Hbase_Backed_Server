@@ -11,7 +11,7 @@ def block_check(rawList):
     listcompass = client.gather(client.map(shared.compass,six_list,(float(rawList[range(1,7)].get('X')),float(rawList[range(1,7)].get('Y')))))
     return listcompass
 
-def block_check(rawList):
+def block_check_1(rawList):
     listcompass = []
     listdis = []
     listblock = []
