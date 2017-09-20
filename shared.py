@@ -49,6 +49,14 @@ def block(angle,d):
             return 2
         else:
             return 1
+    if angle == 90 :
+        return 6
+    if angle == 180 :
+        return 5
+    if angle == 270 :
+        return 4
+    if angle == 0 :
+        return 2
 
 def gettrangecar(intCar):
     db = client['BackendServer']
