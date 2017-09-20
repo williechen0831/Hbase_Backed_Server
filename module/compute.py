@@ -23,7 +23,7 @@ def block_check(rawList):
     if rawList[0] is None :
         vData = 0
     else:
-        vData = rawList[0].get('V')
+        vData = float(rawList[0].get('V'))
     return {'listBlock':json.dumps(listBlock),'listDis':json.dumps(listDis),"vData":json.dumps(vData)}
 
 
