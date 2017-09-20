@@ -27,8 +27,7 @@ def distance(origin, destination):
         * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     d = radius * c
-
-return d
+    return d
 
 def determine(angle):
     return abs(1.875/math.cos(angle))
