@@ -59,7 +59,7 @@ def block_check(rawList):
         u = u + 1
 
 
-    return listcompass
+    return listblock
 
 def getrecentcar_parallel():
     carsObj = client.gather(client.map(shared.gettrangecar,range(7)))
