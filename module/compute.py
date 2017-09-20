@@ -1,5 +1,6 @@
 from conf.dask_conf import client
 import shared
+import json
 
 def block_check(rawList):
     six_raw_list = []
@@ -23,7 +24,7 @@ def block_check(rawList):
         vData = 0
     else:
         vData = rawList[0].get('V')
-    return [listBlock,listDis,vData]
+    return {json.dumps({'listBlock':listBlock}),json.dumps({'listDis':listDis}),"vData":vData}
 
 
 def getrecentcar_parallel():
