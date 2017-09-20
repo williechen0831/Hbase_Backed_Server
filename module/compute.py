@@ -24,7 +24,7 @@ def block_check(rawList):
         vData = 0
     else:
         vData = float(rawList[0].get('V'))
-    return {'listBlock':json.dumps(listBlock),'listDis':json.dumps(listDis),"vData":json.dumps(vData)}
+    return {'listBlock':json.dumps(listBlock),'listDis':json.dumps(listDis),"vData":json.dumps(vData),"sData":json.dumps(2)}
 
 
 def getrecentcar_parallel():
