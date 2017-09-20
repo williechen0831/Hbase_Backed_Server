@@ -5,19 +5,25 @@ def block_check(rawList):
     six_raw_list = []
     six_other_list = []
     for x in range(1,7):
-        try:
+        if rawList[0] is not None:
             six_raw_list.append((float(rawList[0].get('X')),float(rawList[0].get('Y'))))
-        except:
+        else:
             six_raw_list.append((0,0))
-        try:
+
+        if rawList[x] is not None:
             six_other_list.append((float(rawList[x].get('X')),float(rawList[x].get('Y'))))
-        except:
+        else:
             six_other_list.append((0,0))
 
     listCompass = client.gather(client.map(shared.compass,six_raw_list,six_other_list))
     listDis = client.gather(client.map(shared.distance,six_raw_list,six_other_list))
     listBlock = client.gather(client.map(shared.block,listCompass,listDis))
-    return [listBlock,listDis,rawList[0].get('V')]
+    vData = 0
+    if rawList[0] is None :
+        vData = 0
+    else:
+        vData = rawList[0].get('V')
+    return [listBlock,listDis,vData]
 
 
 def getrecentcar_parallel():
