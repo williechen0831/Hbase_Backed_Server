@@ -48,11 +48,11 @@ def block_check(rawList):
     listcompass = []
     listdis = []
     listblock = []
-    for x in range(1,6):
+    for x in rawList:
         listdis.append(
-                distance((float(rawList[0].get('X')),float(rawList[0].get('Y'))),(float(rawList[x].get('X')),float(rawList[x].get('Y')))))
+                distance((float(rawList[0].get('X')),float(rawList[0].get('Y'))),(float(x.get('X')),float(x.get('Y')))))
         listcompass.append(
-                compass((float(rawList[0].get('X')),float(rawList[0].get('Y'))),(float(rawList[x].get('X')),float(rawList[x].get('Y')))))
+                compass((float(rawList[0].get('X')),float(rawList[0].get('Y'))),(float(x.get('X')),float(x.get('Y')))))
     u = 0
     for x in listcompass:
         listblock.append(block(x,listdis[u]))
