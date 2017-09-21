@@ -28,7 +28,6 @@ def block_check(listRaw):
         vData = float(listRaw[0].get('V'))
     return {
         'listBlock':json.dumps(listBlock),
-        'listCompass':json.dumps(listCompass),
         'listDis':json.dumps(listDis),
         'vData':json.dumps(vData),
         'sData':json.dumps(2)
