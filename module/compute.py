@@ -1,32 +1,40 @@
+"""module of dask compute"""
+import json
 from conf.dask_conf import client
 import shared
-import json
 
-def block_check(rawList):
-    six_raw_list = []
-    six_other_list = []
-    for x in range(1,7):
-        if rawList[0] is not None:
-            six_raw_list.append((float(rawList[0].get('X')),float(rawList[0].get('Y'))))
+def block_check(listRaw):
+    """function block check dask compute"""
+    listSixraw = []
+    listSixother = []
+    for x in range(1, 7):
+        if listRaw[0] is not None:
+            listSixraw.append((float(listRaw[0].get('X')), float(listRaw[0].get('Y'))))
         else:
-            six_raw_list.append((0,0))
+            listSixraw.append((0, 0))
 
-        if rawList[x] is not None:
-            six_other_list.append((float(rawList[x].get('X')),float(rawList[x].get('Y'))))
+        if listRaw[x] is not None:
+            listSixother.append((float(listRaw[x].get('X')), float(listRaw[x].get('Y'))))
         else:
-            six_other_list.append((0,0))
+            listSixother.append((0, 0))
 
-    listCompass = client.gather(client.map(shared.compass,six_raw_list,six_other_list))
-    listDis = client.gather(client.map(shared.distance,six_raw_list,six_other_list))
-    listBlock = client.gather(client.map(shared.block,listCompass,listDis))
+    listCompass = client.gather(client.map(shared.compass_calc, listSixraw, listSixother))
+    listDis = client.gather(client.map(shared.distance_calc, listSixraw, listSixother))
+    listBlock = client.gather(client.map(shared.block_calc, listCompass, listDis))
     vData = 0
-    if rawList[0] is None :
+    if listRaw[0] is None:
         vData = 0
     else:
-        vData = float(rawList[0].get('V'))
-    return {'listBlock':json.dumps(listBlock),'listDis':json.dumps(listDis),"vData":json.dumps(vData),"sData":json.dumps(2)}
+        vData = float(listRaw[0].get('V'))
+    return {
+        'listBlock':json.dumps(listBlock),
+        'listDis':json.dumps(listDis),
+        'vData':json.dumps(vData),
+        'sData':json.dumps(2)
+        }
 
 
 def getrecentcar_parallel():
-    carsObj = client.gather(client.map(shared.gettrangecar,range(7)))
+    """function of recent car compute"""
+    carsObj = client.gather(client.map(shared.gettrangecar, range(7)))
     return carsObj

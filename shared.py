@@ -1,80 +1,82 @@
+"""compute shared module"""
 import datetime
 import math
+
 # src :https://gist.github.com/jeromer/2005586
-def compass(pointA, pointB):
-    lat1 = math.radians(pointA[0])
-    lat2 = math.radians(pointB[0])
-    diffLong = math.radians(pointB[1] - pointA[1])
-    x = math.sin(diffLong) * math.cos(lat2)
-    y = math.cos(lat1) * math.sin(lat2) - (math.sin(lat1)
-            * math.cos(lat2) * math.cos(diffLong))
-    initial_bearing = math.atan2(x, y)
+def compass_calc(pointA, pointB):
+    """function of compass calulator """
+    floatLat1dis = math.radians(pointA[0])
+    floatLat2dis = math.radians(pointB[0])
+    floatDifflong = math.radians(pointB[1] - pointB[1])
+    axisX = math.sin(floatDifflong) * math.cos(floatLat2dis)
+    axisY = math.cos(floatLat1dis) * math.sin(floatLat2dis) - (
+        math.sin(floatLat1dis)* math.cos(floatLat2dis) * math.cos(floatDifflong))
+    initial_bearing = math.atan2(axisX, axisY)
     initial_bearing = math.degrees(initial_bearing)
     compass_bearing = (initial_bearing + 360) % 360
     return compass_bearing
 
-def distance(origin, destination):
-    lat1, lon1 = origin
-    lat2, lon2 = destination
-    radius = 6371 # km
-    dlat = math.radians(lat2-lat1)
-    dlon = math.radians(lon2-lon1)
-    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
-        * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-    d = radius * c
-    return d * 1000
+def distance_calc(pointA, pointB):
+    """function of distance calulator"""
+    intRadius = 6371 # km
+    floatLatdis = math.radians(pointB[0]-pointA[0])
+    floatLondis = math.radians(pointB[1]-pointA[1])
+    floatA = math.sin(floatLatdis/2) * math.sin(floatLatdis/2) + math.cos(math.radians(pointA[0])) \
+        * math.cos(math.radians(pointB[0])) * math.sin(floatLondis/2) * math.sin(floatLondis/2)
+    floatC = 2 * math.atan2(math.sqrt(floatA), math.sqrt(1-floatA))
+    floatDistance = intRadius * floatC
+    return floatDistance * 1000
 
-def determine(angle):
+def determine_calc(angle):
+    """function of largest distance angle"""
     return abs(1.875/math.cos(angle))
 
-def block(angle,d):
-    if angle>0 and angle<90:
-        if d < determine(angle):
-            return 2
+def block_calc(floatAngle, floatDistance):
+    """function of block compute"""
+    intAngle = int(floatAngle)
+    if intAngle >= 0 and intAngle < 90:
+        if floatDistance < determine_calc(intAngle):
+            ans_of_return = 2
         else:
-            return 3
-    if angle>90 and angle <180:
-        if d < determine(angle):
-            return 5
+            ans_of_return = 3
+    if intAngle >= 90 and intAngle < 180:
+        if intAngle == 90:
+            ans_of_return = 6
+        elif floatDistance < determine_calc(intAngle):
+            ans_of_return = 5
         else:
-            return 6
-    if angle>180 and angle <270:
-        if d < determine(angle):
-            return 5
+            ans_of_return = 6
+    if intAngle >= 180 and intAngle < 270:
+        if floatDistance < determine_calc(intAngle):
+            ans_of_return = 5
         else:
-            return 4
-    if angle>270 and angle<360:
-        if d < determine(angle):
-            return 2
+            ans_of_return = 4
+    if intAngle >= 270 and intAngle < 360:
+        if intAngle == 270:
+            ans_of_return = 4
+        elif floatDistance < determine_calc(intAngle):
+            ans_of_return = 2
         else:
-            return 1
-    if angle == 90 :
-        return 6
-    if angle == 180 :
-        return 5
-    if angle == 270 :
-        return 4
-    if angle == 0 :
-        return 2
+            ans_of_return = 1
+    return ans_of_return
 
 def gettrangecar(intCar):
+    """function of getrange of car compute"""
     db = client['BackendServer']
     col = db['posData-test']
-    nowTime = datetime.datetime.now()
-    deltaTime = datetime.timedelta(seconds=3)
-    calcTime = nowTime - deltaTime
+    timeNow = datetime.datetime.now()
+    timeDelta = datetime.timedelta(seconds=3)
+    timeCalc = timeNow - timeDelta
     raw = {
-            "car":int(intCar),
-            "time":
+        "car":int(intCar),
+        "time":
             {
-                "$gte":calcTime,"$lte":nowTime
+                "$gte":timeCalc, "$lte":timeNow
                 }
-            }
+        }
     returnValue = []
-    if col.find(raw).sort('_id',-1).count() == 0:
+    if col.find(raw).sort('_id', -1).count() == 0:
         returnValue = None
     else:
-        returnValue = col.find(raw).sort('_id',-1)[0]
+        returnValue = col.find(raw).sort('_id', -1)[0]
     return returnValue
-

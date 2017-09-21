@@ -3,7 +3,6 @@ from view.debug import debug
 from view.main import main
 from view.api import api
 from conf.dask_conf import client
-import subprocess
 app.blueprint(debug, url_prefix='/debug')
 app.blueprint(api, url_prefix='/api')
 app.blueprint(main)
