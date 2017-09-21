@@ -7,7 +7,7 @@ def compass_calc(pointA, pointB):
     """function of compass calulator """
     floatLat1dis = math.radians(pointA[0])
     floatLat2dis = math.radians(pointB[0])
-    floatDifflong = math.radians(pointB[1] - pointB[1])
+    floatDifflong = math.radians(pointB[1] - pointA[1])
     axisX = math.sin(floatDifflong) * math.cos(floatLat2dis)
     axisY = math.cos(floatLat1dis) * math.sin(floatLat2dis) - (
         math.sin(floatLat1dis)* math.cos(floatLat2dis) * math.cos(floatDifflong))
