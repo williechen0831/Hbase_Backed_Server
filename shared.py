@@ -35,7 +35,9 @@ def block_calc(floatAngle, floatDistance):
     """function of block compute"""
     intAngle = int(floatAngle)
     if intAngle >= 0 and intAngle < 90:
-        if floatDistance < determine_calc(intAngle):
+        if intAngle == 0:
+            ans_of_return = 2
+        elif floatDistance < determine_calc(intAngle):
             ans_of_return = 2
         else:
             ans_of_return = 3
