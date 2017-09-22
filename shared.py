@@ -33,33 +33,34 @@ def determine_calc(angle):
 
 def block_calc(floatAngle, floatDistance):
     """function of block compute"""
-    intAngle = int(floatAngle)
-    if intAngle >= 0 and intAngle < 90:
-        if intAngle == 0:
-            ans_of_return = 2
-        elif floatDistance < determine_calc(intAngle):
+    if floatAngle > 0 and floatAngle < 90:
+        elif floatDistance < determine_calc(floatAngle):
             ans_of_return = 2
         else:
             ans_of_return = 3
-    if intAngle >= 90 and intAngle < 180:
-        if intAngle == 90:
-            ans_of_return = 6
-        elif floatDistance < determine_calc(intAngle):
+    if floatAngle > 90 and floatAngle < 180:
+        elif floatDistance < determine_calc(floatAngle):
             ans_of_return = 5
         else:
             ans_of_return = 6
-    if intAngle >= 180 and intAngle < 270:
-        if floatDistance < determine_calc(intAngle):
+    if floatAngle > 180 and floatAngle < 270:
+        if floatDistance < determine_calc(floatAngle):
             ans_of_return = 5
         else:
             ans_of_return = 4
-    if intAngle >= 270 and intAngle < 360:
-        if intAngle == 270:
-            ans_of_return = 4
-        elif floatDistance < determine_calc(intAngle):
+    if floatAngle > 270 and floatAngle < 360:
+        elif floatDistance < determine_calc(floatAngle):
             ans_of_return = 2
         else:
             ans_of_return = 1
+    if floatAngle == 90 :
+        ans_of_return = 6
+    if floatAngle == 180 :
+        ans_of_return = 5
+    if floatAngle == 270 :
+        ans_of_return = 4
+    if floatAngle == 0 :
+        ans_of_return = 2
     return ans_of_return
 
 def gettrangecar(intCar):
