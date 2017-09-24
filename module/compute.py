@@ -22,7 +22,6 @@ def block_check(listRaw):
     listDis = client.gather(client.map(shared.distance_calc, listSixraw, listSixother))
     listBlock = client.gather(client.map(shared.block_calc, listCompass, listDis))
     vData = 0
-    print(listRaw)
     if listRaw[0] is None:
         vData = 0
     else:
