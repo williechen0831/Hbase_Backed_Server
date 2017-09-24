@@ -5,6 +5,8 @@ import math
 # src :https://gist.github.com/jeromer/2005586
 def compass_calc(pointA, pointB):
     """function of compass calulator """
+    if pointB == 0:
+        pointA = pointB
     floatLat1dis = math.radians(pointA[0])
     floatLat2dis = math.radians(pointB[0])
     floatDifflong = math.radians(pointB[1] - pointA[1])
@@ -18,6 +20,8 @@ def compass_calc(pointA, pointB):
 
 def distance_calc(pointA, pointB):
     """function of distance calulator"""
+    if pointB == 0:
+        pointA = pointB
     intRadius = 6371 # km
     floatLatdis = math.radians(pointB[0]-pointA[0])
     floatLondis = math.radians(pointB[1]-pointA[1])
