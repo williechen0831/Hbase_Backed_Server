@@ -34,12 +34,12 @@ def determine_calc(angle):
 def block_calc(floatAngle, floatDistance):
     """function of block compute"""
     if floatAngle > 0 and floatAngle < 90:
-        elif floatDistance < determine_calc(floatAngle):
+        if floatDistance < determine_calc(floatAngle):
             ans_of_return = 2
         else:
             ans_of_return = 3
     if floatAngle > 90 and floatAngle < 180:
-        elif floatDistance < determine_calc(floatAngle):
+        if floatDistance < determine_calc(floatAngle):
             ans_of_return = 5
         else:
             ans_of_return = 6
@@ -49,24 +49,24 @@ def block_calc(floatAngle, floatDistance):
         else:
             ans_of_return = 4
     if floatAngle > 270 and floatAngle < 360:
-        elif floatDistance < determine_calc(floatAngle):
+        if floatDistance < determine_calc(floatAngle):
             ans_of_return = 2
         else:
             ans_of_return = 1
-    if floatAngle == 90 :
+    if floatAngle == 90:
         ans_of_return = 6
-    if floatAngle == 180 :
+    if floatAngle == 180:
         ans_of_return = 5
-    if floatAngle == 270 :
+    if floatAngle == 270:
         ans_of_return = 4
-    if floatAngle == 0 :
+    if floatAngle == 0:
         ans_of_return = 2
     return ans_of_return
 
 def gettrangecar(intCar):
     """function of getrange of car compute"""
     db = client['BackendServer']
-    col = db['posData-test']
+    col = db['posData']
     timeNow = datetime.datetime.now()
     timeDelta = datetime.timedelta(seconds=3)
     timeCalc = timeNow - timeDelta
