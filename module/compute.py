@@ -29,6 +29,7 @@ def block_check(listRaw):
     return {
         'listBlock':json.dumps(listBlock),
         'listDis':json.dumps(listDis),
+        'listCompass':json.dumps(listCompass),
         'vData':json.dumps(vData),
         'sData':json.dumps(2)
         }
