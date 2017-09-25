@@ -12,7 +12,7 @@ async def findCar(request, car):
     """function for find one car"""
     try:
         dbCar = posData.getlastcar(int(car))[0]
-    except AttributeError:
+    except TypeError:
         return json({'msg':'err'})
     return json({
         'car': dbCar.get('car'),
