@@ -26,7 +26,4 @@ class PosData:
             "car": int(car)
         }
         if not self.col.find(raw).count() == 0:
-            data = self.col.find(raw).sort('_id', -1)
-        else:
-            data = 'Error'
-        return data
+            return self.col.find(raw).sort('_id', -1)

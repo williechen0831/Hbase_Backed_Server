@@ -10,8 +10,9 @@ api = Blueprint('api')
 @api.route('/car/<car>')
 async def findCar(request, car):
     """function for find one car"""
-    dbCar = posData.getlastcar(int(car))[0]
-    if dbCar == 'Car':
+    try:
+        dbCar = posData.getlastcar(int(car))[0]
+    except AttributeError:
         return json({'msg':'err'})
     return json({
         'car': dbCar.get('car'),
