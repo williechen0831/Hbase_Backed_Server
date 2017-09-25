@@ -1,7 +1,6 @@
 """moudule for mongodb query"""
 import datetime
 from conf.db_conf import client
-from pymongo.errors import CursorNotFound
 class PosData:
     """Position Data"""
     def __init__(self):
@@ -28,5 +27,5 @@ class PosData:
         }
         try:
             return self.col.find(raw).sort('_id', -1)
-        except CursorNotFound:
+        except IndexError:
             return 'Error'
